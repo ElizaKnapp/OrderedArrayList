@@ -14,21 +14,21 @@ public class NoNullArrayList<T> extends ArrayList<T> {
     if (element == null) {
       throw new IllegalArgumentException("You cannot add null values");
     }
-    return super.add(element);
+    else return super.add(element);
   }
 
   public void add(int index, T element) {
     if (element == null) {
       throw new IllegalArgumentException("You cannot add null values");
     }
-    super.add(index, element);
+    else super.add(index, element);
   }
 
   public T set(int index, T element) {
     if (element == null) {
       throw new IllegalArgumentException("You cannot set null values");
     }
-    return super.set(index, element);
+    else return super.set(index, element);
   }
 
 
