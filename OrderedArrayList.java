@@ -38,6 +38,9 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   public T set(int index, T element) {
+    if (element == null) {
+      throw new IllegalArgumentException("You cannot add null values");
+    }
     T holder = get(index);
     super.remove(index);
     add(element);
