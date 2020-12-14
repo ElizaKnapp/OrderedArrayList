@@ -11,15 +11,18 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   public boolean add(T element) {
-    super.add(findIndex(element), element);
+    super.add(findPlace(element), element);
     return true;
   }
 
-  private int findIndex(T element) {
-    int index = size() - 1;
+  private int findPlace(T element) {
+    if (element == null) {
+      throw new IllegalArgumentException("You cannot add null values");
+    }
+    int index = 0;
     for (int i = 0; i < size() - 1; i++) {
-      if (element.compareTo(get(i)) <= 0 && element.compareTo(get(i + 1)) >= 0) {
-        index = i;
+      if (get(i).compareTo(element) <= 0 && element.compareTo(get(i + 1)) <= 0) {
+        index = i + 1;
       }
     }
     return index;
@@ -30,7 +33,7 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   public T set(int index, T element) {
-    T holder = get(index);
+    T holder = super.get(index);
     super.remove(index);
     add(element);
     return holder;
